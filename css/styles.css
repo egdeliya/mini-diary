@@ -1,0 +1,66 @@
+:root {
+    /* primary text */
+    --black: #2E2E2E;
+    /* secondary text or not primary icons */
+    --gray: #D3CFCF;
+    /* background */
+    --terracotta-white: #FAF9F6;
+    --white: #fff;
+    /* accent color */
+    --terracotta: #E07A5F;
+
+    --font-size: 1.5rem;
+    --nunito: Nunito, monospace;
+    --sans: Montserrat, sans-serif;
+}
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    display: flex;
+    flex-direction: row;
+
+    background-color: var(--terracotta-white);
+    color: var(--black);
+}
+
+.page {
+    /*border: 1px solid gray;*/
+
+    margin: 1rem auto;
+    max-width: 900px;
+
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--white);
+
+    font-size: var(--font-size);
+}
+
+.icon-summary {
+    /*width="800px" height="800px"*/
+    width: 2.5rem;
+    height: 2.5rem;
+
+    fill: var(--gray);
+}
+
+.icon-save {
+    width: 3rem;
+    height: 3rem;
+
+    fill: var(--terracotta);
+
+}
