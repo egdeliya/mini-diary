@@ -10,45 +10,86 @@
     --terracotta: #E07A5F;
 
     --font-size: 1.5rem;
-    --nunito: Nunito, monospace;
-    --sans: Montserrat, sans-serif;
+    --nunito: "Nunito", sans-serif;
 }
 html {
     box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
 }
 *,
 *::before,
 *::after {
     box-sizing: inherit;
+
+    margin: 0;
+    padding: 0;
 }
 body {
     margin: 0;
     padding: 0;
 }
 .wrapper {
+    height: 100vh;
+
+    margin: 0;
+    padding: 1.5rem 0 1rem 5rem;
+
     display: flex;
     flex-direction: row;
 
     background-color: var(--terracotta-white);
     color: var(--black);
+
+    /*font-size: var(--font-size);*/
+    font-family: var(--nunito);
+}
+.icon-menu {
+    width: 2rem;
+    height: 2rem;
+
+    fill: var(--black);
 }
 
 .page {
     /*border: 1px solid gray;*/
-
-    margin: 1rem auto;
+    margin: 0 auto;
     max-width: 900px;
 
     padding: 2rem;
 
     display: flex;
     flex-direction: column;
+    /*justify-content: ;*/
 
     background-color: var(--white);
 
-    font-size: var(--font-size);
+    font-family: var(--nunito), sans-serif;
 }
+.page header {
+    display: flex;
+    flex-flow: row nowrap;
 
+    margin-bottom: 2rem;
+}
+.title-container {
+    /*border: 1px solid green;*/
+    /*flex-basis: 90%;*/
+}
+.page header .entry-title {
+    width: 100%;
+
+    font-family: var(--nunito), sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+
+    margin: 0;
+    padding: 0;
+}
+.page header p {
+    margin: 0;
+}
 .icon-summary {
     /*width="800px" height="800px"*/
     width: 2.5rem;
@@ -56,11 +97,26 @@ body {
 
     fill: var(--gray);
 }
+.entry-body {
+    font-family: var(--nunito), sans-serif;
+    /*font-size: var(--font-size);*/
+    font-size: 1.2rem;
+    font-weight: 300;
+
+    flex-basis: 97%;
+}
+.page footer {
+    /*border: 2px solid red;*/
+    justify-self: flex-end;
+}
+.page footer p {
+    font-size: 0.8rem;
+    text-align: end;
+}
 
 .icon-save {
     width: 3rem;
     height: 3rem;
 
     fill: var(--terracotta);
-
 }
