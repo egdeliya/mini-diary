@@ -10,7 +10,7 @@
     --terracotta: #E07A5F;
 
     --font-size: 1.5rem;
-    --nunito: "Nunito", sans-serif;
+    --nunito: "Nunito", Arial, sans-serif;
 }
 html {
     box-sizing: border-box;
@@ -98,7 +98,7 @@ nav li {
 /* ----- entry page ----- */
 .page {
     /*border: 1px solid green;*/
-    max-width: 900px;
+    max-width: 800px;
 
     margin-left: auto;
 
@@ -110,6 +110,7 @@ nav li {
     background-color: var(--white);
 
     font-family: var(--nunito), sans-serif;
+    line-height: 1.5rem;
 }
 .page p,
 .page div {
@@ -149,6 +150,7 @@ nav li {
     /*font-size: var(--font-size);*/
     font-size: 1.2rem;
     font-weight: 300;
+    line-height: 1.5rem;
 
     flex-basis: 97%;
 }
