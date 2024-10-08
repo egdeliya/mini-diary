@@ -43,38 +43,67 @@ html {
 }
 
 /* ----- navigation ----- */
-nav ul {
-    list-style-type: none;
-
-    /* hide menu by default*/
-    visibility: hidden;
-
-    position: absolute;
-}
-#menu-checkbox {
-    display: none;
-}
-.menu-btn {
-    font-size: var(--font-size);
-    cursor: pointer;
-}
 .icon-menu {
     width: 2rem;
     height: 2rem;
 
     fill: var(--black);
 }
-nav a {
+/* Button styling */
+.menu-toggle {
+    display: inline-block;
+    padding: .75em 15px;
+    line-height: 1em;
+    font-size: 1em;
+}
+/* Offscreen menu style */
+.main-menu {
+    position: absolute;
+    display: none;
+    left: -200px;
+    top: 0;
+    height: 100%;
+
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+.main-menu ul {
+    list-style-type: none;
+
+    margin: 0;
+    padding: 2.5em 0 0;
+
+    min-height: 100%;
+    width: 200px;
+
+    background-color: var(--terracotta-white);
+}
+.main-menu a {
     text-decoration: none;
 
     color: var(--black);
     font-family: var(--nunito), sans-serif;
     font-size: var(--font-size);
+    line-height: 1rem;
 
     display: flex;
     gap: 1rem;
 
     padding: 1rem 1.5rem;
+}
+.main-menu a:hover,
+.main-menu a:focus {
+    /* TODO create background color from terracotta-white but darker */
+    background: var(--gray);
+}
+.main-menu a span {
+    align-self: center;
+}
+.main-menu .menu-close {
+    position: absolute;
+    /* TODO is it necessary to move nav to right ???? */
+    /*right: 0;*/
+    top: 0;
 }
 nav img {
     height: 1.5rem;
@@ -85,14 +114,57 @@ nav img {
 nav li {
     font-size: var(--font-size);
 }
-
-.hidden {
-    display: none;
+aside {
+    padding: 20px;
+    display: flex;
+    align-items: baseline;
 }
-.active {
+
+/* Toggle main-menu */
+.main-menu:target {
     display: block;
+    left: 0;
+    outline: none;
 }
 
+.main-menu:target .menu-close {
+    z-index: 1001;
+}
+
+.main-menu:target ul {
+    position:relative;
+    z-index: 1000;
+}
+
+.main-menu:target + .backdrop {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    cursor: default;
+}
+
+@supports (position: fixed) {
+    .main-menu,
+    .main-menu:target + .backdrop {
+        position: fixed;
+    }
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
 
 
 /* ----- entry page ----- */
