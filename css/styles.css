@@ -167,7 +167,7 @@ aside {
 
 
 /* ----- entry page ----- */
-.page {
+.page-container {
     /*border: 1px solid green;*/
     max-width: 800px;
 
@@ -182,13 +182,17 @@ aside {
 
     font-family: var(--nunito), sans-serif;
     line-height: 1.5rem;
+
+    /* to create child divs (new-pages) that overlap parent */
+    overflow: auto;
+    position: relative;
 }
-.page p,
-.page div {
+.page-container p,
+.page-container div {
     margin: 0;
     padding: 0;
 }
-.page header {
+.page-container header {
     display: flex;
     flex-flow: row nowrap;
 
@@ -197,7 +201,7 @@ aside {
 .title-container {
     /*border: 1px solid green;*/
 }
-.page header .entry-title {
+.page-container header .entry-title {
     /*border: 2px solid red;*/
 
     width: 100%;
@@ -225,11 +229,11 @@ aside {
 
     flex-basis: 97%;
 }
-.page footer {
+.page-container footer {
     /*border: 2px solid red;*/
     justify-self: flex-end;
 }
-.page footer p {
+.page-container footer p {
     font-size: 0.8rem;
     text-align: end;
 }
@@ -243,4 +247,20 @@ aside {
 
     align-self: flex-end;
     margin-right: auto;
+}
+
+/* ------ new page ------ */
+.new-page {
+    border: 1px solid green;
+
+    background-color: var(--terracotta);
+    z-index: 1;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
 }
