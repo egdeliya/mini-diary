@@ -214,14 +214,15 @@ aside {
     padding: 0;
 }
 .icon-summary {
-    /*width="800px" height="800px"*/
     width: 2.5rem;
     height: 2.5rem;
 
     fill: var(--gray);
+
+    visibility: hidden;
 }
 /* first page (with heading and date) */
-.entry-body {
+.page-0 {
     font-family: var(--nunito), sans-serif;
     /*font-size: var(--font-size);*/
     font-size: 1.2rem;
@@ -229,14 +230,6 @@ aside {
     line-height: 1.5rem;
 
     flex-basis: 97%;
-}
-.page-container footer {
-    /*border: 2px solid red;*/
-    justify-self: flex-end;
-}
-.page-container footer p {
-    font-size: 0.8rem;
-    text-align: end;
 }
 
 .icon-save {
@@ -255,7 +248,7 @@ aside {
     border: 2px solid red;
     height: 2rem;
 }
-.new-page {
+.blank-page {
     padding: 2rem !important;
 
     border: 1px solid green;
