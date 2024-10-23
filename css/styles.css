@@ -223,7 +223,7 @@ aside {
 }
 /* first page body (shortened because of heading and date) */
 .page-0 {
-    border: 1px solid green;
+    /*border: 1px solid green;*/
 
     font-family: var(--nunito), sans-serif;
     /*font-size: var(--font-size);*/
@@ -247,9 +247,10 @@ aside {
 
 /* ------ new page ------ */
 .blank-page {
-    padding: 2rem !important;
+    /*border: 1px solid green;*/
+    /*visibility: hidden;*/
 
-    border: 1px solid green;
+    padding: 2rem !important;
 
     background-color: var(--white);
     z-index: 1;
