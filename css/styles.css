@@ -17,6 +17,8 @@ html {
 
     margin: 0;
     padding: 0;
+
+    overflow: visible;
 }
 *,
 *::before,
@@ -25,13 +27,15 @@ html {
 
     margin: 0;
     padding: 0;
+
+    overflow: visible;
 }
 .wrapper {
     /*border: 2px solid yellowgreen;*/
 
     height: 100vh;
 
-    padding: 1.5rem 0 1rem 5rem;
+    padding-left: 5rem;
 
     display: flex;
     flex-flow: row nowrap;
@@ -40,6 +44,8 @@ html {
     color: var(--black);
 
     font-family: var(--nunito), sans-serif;
+
+    overflow: auto;
 }
 
 /* ----- navigation ----- */
@@ -182,10 +188,6 @@ aside {
 
     font-family: var(--nunito), sans-serif;
     line-height: 1.5rem;
-
-    /* to create child divs (new-pages) that overlap parent */
-    overflow: auto;
-    position: relative;
 }
 .page-container p,
 .page-container div {
@@ -245,26 +247,7 @@ aside {
     margin-right: auto;
 }
 
-/* ------ new page ------ */
-.blank-page {
-    /*border: 1px solid green;*/
-    /*visibility: hidden;*/
-
-    padding: 2rem !important;
-
-    background-color: var(--white);
-    z-index: 1;
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    height: 100%;
-    width: 100%;
-
-    font-family: var(--nunito), sans-serif;
-    font-size: 1.2rem;
-    font-weight: 300;
-    line-height: 1.5rem;
+/* ------ prevent quill editor from scrolling ------ */
+.ql-editor {
+    overflow: visible;
 }
