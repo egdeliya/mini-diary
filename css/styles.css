@@ -188,6 +188,10 @@ aside {
 
     font-family: var(--nunito), sans-serif;
     line-height: 1.5rem;
+
+    overflow: auto;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-color: var(--white) var(--white);
 }
 .page-container p,
 .page-container div {
