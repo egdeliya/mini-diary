@@ -3,14 +3,18 @@
     --black: #2E2E2E;
     /* secondary text, borders or not primary icons */
     --gray: #D3CFCF;
+    --light-gray: #F5F4F6;
     /* background */
     --terracotta-white: #FAF9F6;
     --white: #fff;
     /* accent color */
     --terracotta: #E07A5F;
+    --light-terracotta: #ffd5a6;
 
     --font-size: 1.5rem;
     --nunito: "Nunito", Arial, sans-serif;
+
+    --lh: 1.5rem;
 }
 html {
     box-sizing: border-box;
@@ -187,7 +191,7 @@ aside {
     background-color: var(--white);
 
     font-family: var(--nunito), sans-serif;
-    line-height: 1.5rem;
+    line-height: var(--lh);
 
     overflow: auto;
     scrollbar-gutter: stable both-edges;
@@ -206,6 +210,9 @@ aside {
 }
 .title-container {
     /*border: 1px solid green;*/
+
+    margin: 0;
+    padding: 0;
 }
 .page-container header .entry-title {
     /*border: 2px solid red;*/
@@ -227,7 +234,7 @@ aside {
 
     visibility: hidden;
 }
-/* first page body (shortened because of heading and date) */
+/* page body */
 .page-0 {
     /*border: 1px solid green;*/
 
@@ -235,7 +242,7 @@ aside {
     /*font-size: var(--font-size);*/
     font-size: 1.2rem;
     font-weight: 300;
-    line-height: 1.5rem;
+    line-height: var(--lh);
 
     flex-basis: 97%;
 }
@@ -254,4 +261,67 @@ aside {
 /* ------ prevent quill editor from scrolling ------ */
 .ql-editor {
     overflow: visible;
+}
+
+
+/* ------ entry preview ------ */
+.middle {
+    /*border: 1px solid blue;*/
+
+    height: 100%;
+    margin: auto;
+}
+
+.entry-preview {
+    --max-lines: 12;
+    max-height: calc(var(--lh) * var(--max-lines));
+
+    margin-bottom: 1rem;
+
+    padding: 1rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-bottom: 1px solid var(--gray);
+    border-top: 1px solid var(--gray);
+
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.search {
+    border: none;
+    border-radius: 0;
+    background-color: var(--light-gray);
+
+    background-image: url('../img/icon-search-gray.svg');
+    background-position: 0.3rem 0.3rem;
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+
+    padding: 0.2rem 1rem 0.2rem 2.5rem;
+
+    font-family: var(--nunito), sans-serif;
+    font-size: 1.2rem;
+
+    margin-bottom: 2rem;
+}
+
+.search:focus {
+    outline: none;
+    border: none;
+}
+
+.entry-preview .entry-title {
+    margin-bottom: 1rem !important;
+}
+
+.angle-right {
+    width: 2rem;
+    height: 2rem;
+
+    fill: var(--terracotta);
+
+    align-self: flex-end;
 }
