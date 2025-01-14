@@ -44,4 +44,14 @@ function uuidv4() {
 searchEntriesLink = document.getElementById("search-all");
 searchEntriesLink.addEventListener("click", (e) => {
     // save current entry to file / sqlite
-})
+    e.preventDefault();
+
+    const entry = {
+        uid: uuidv4(),
+        title: entryTitleEditor.getText(0),
+        content: entryBodyEditor.getText(0)
+    };
+
+
+    window.diaryAPI.saveEntry(entry.uid, entry);
+});

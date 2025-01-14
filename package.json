@@ -1,0 +1,15 @@
+{
+  "name": "mini-diary",
+  "version": "1.0.0",
+  "description": "A journal app focused on simplicity.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Egdeliia Samirova",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.3.1"
+  }
+}
