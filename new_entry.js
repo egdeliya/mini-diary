@@ -1,7 +1,8 @@
 dateElement = document.getElementsByClassName('date')[0];
 let today = new Date();
 let opts = {day: "numeric", month: "long", year: "numeric"};
-dateElement.innerText = today.toLocaleString("ru-RU", opts);
+const date = today.toLocaleString("ru-RU", opts);
+dateElement.innerText = date;
 
 let localStorage = window.localStorage;
 
@@ -41,17 +42,24 @@ function uuidv4() {
     );
 }
 
-searchEntriesLink = document.getElementById("search-all");
+searchEntriesLink = document.getElementById("search-entries");
 searchEntriesLink.addEventListener("click", (e) => {
     // save current entry to file / sqlite
-    e.preventDefault();
+    let title = entryTitleEditor.getText(0);
+    let content = entryBodyEditor.getText(0);
+    if (title.trim() === "" && content.trim() === "") {
+        return;
+    }
+
+    let uid = uuidv4();
 
     const entry = {
-        uid: uuidv4(),
-        title: entryTitleEditor.getText(0),
-        content: entryBodyEditor.getText(0)
+        uid: uid,
+        title: title,
+        date: date,
+        content: content
     };
 
 
-    window.diaryAPI.saveEntry(entry.uid, entry);
+    window.diaryAPI.saveEntry(uid, entry);
 });
