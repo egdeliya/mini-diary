@@ -24,9 +24,13 @@ for (let uid in entries) {
                 <p>${entry.content}</p>
             </div>
         </div>
-    
-        <img class="angle-right" src="./img/angle-right-solid.svg" alt="go to diary entry">
+        
+        <a href="./entry.html?uid=${uid}">
+            <img class="angle-right" src="./img/angle-right-solid.svg" alt="go to diary entry">
+        </a>
     </article>
     `;
     previews.appendChild(li);
 }
+
+
