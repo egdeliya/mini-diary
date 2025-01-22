@@ -1,3 +1,7 @@
 .idea
 node_modules
-diary.json
+data
+
+.DS_Store
+
+out/
