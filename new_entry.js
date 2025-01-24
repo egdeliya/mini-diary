@@ -4,7 +4,7 @@ let opts = {day: "numeric", month: "long", year: "numeric"};
 const date = today.toLocaleString("ru-RU", opts);
 dateElement.innerText = date;
 
-let localStorage = window.localStorage;
+let leftTickOfSaveIcon = document.getElementsByClassName("left-tick")[0];
 
 const entryTitleEditor = new Quill('#entry-title', {
     theme: 'bubble',
@@ -16,7 +16,7 @@ function updateTitle(delta, oldDelta, source) {
         return;
     }
 
-    localStorage.setItem(`current-entry-title`, entryTitleEditor.getText());
+    leftTickOfSaveIcon.style.fill = "#D3CFCF"; // gray
 }
 
 entryTitleEditor.on('text-change', updateTitle);
@@ -31,35 +31,43 @@ function updatePage(delta, oldDelta, source) {
         return;
     }
 
-    localStorage.setItem(`current-entry`, entryBodyEditor.getText());
+    leftTickOfSaveIcon.style.fill = "#D3CFCF"; // gray
 }
 
 entryBodyEditor.on('text-change', updatePage);
 
-function uuidv4() {
-    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-        (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
-    );
-}
+
+const entryUid = uuidv4();
+
+let saveEntryButton = document.getElementsByClassName("save-button")[0];
+saveEntryButton.addEventListener("click", saveEntry);
 
 let searchEntriesLink = document.getElementById("search-entries");
-searchEntriesLink.addEventListener("click", (e) => {
-    // save current entry to file / sqlite
+searchEntriesLink.addEventListener("click", saveEntry);
+
+function saveEntry() {
+    // save current entry to file
     let title = entryTitleEditor.getText(0);
     let content = entryBodyEditor.getText(0);
     if (title.trim() === "" && content.trim() === "") {
         return;
     }
 
-    let uid = uuidv4();
-
     const entry = {
-        uid: uid,
+        uid: entryUid,
         title: title,
         date: date,
         content: content
     };
 
 
-    window.diaryAPI.saveEntry(uid, entry);
-});
+    window.diaryAPI.saveEntry(entryUid, entry);
+
+    leftTickOfSaveIcon.style.fill = "#E07A5F"; // terracotta
+}
+
+function uuidv4() {
+    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+        (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+    );
+}
