@@ -1,7 +1,7 @@
 dateElement = document.getElementsByClassName('date')[0];
 let today = new Date();
 let opts = {day: "numeric", month: "long", year: "numeric"};
-const date = today.toLocaleString("ru-RU", opts);
+const date = today.toLocaleString("en-EN", opts);
 dateElement.innerText = date;
 
 let leftTickOfSaveIcon = document.getElementsByClassName("left-tick")[0];

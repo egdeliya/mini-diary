@@ -179,8 +179,7 @@ aside {
 /* ----- entry page ----- */
 .page-container {
     /*border: 1px solid green;*/
-    max-width: 800px;
-    min-width: 44%;
+    width: 800px;
 
     margin-left: auto;
 
@@ -214,6 +213,8 @@ aside {
 
     margin: 0;
     padding: 0;
+
+    width: 100%;
 }
 .page-container header .entry-title {
     /*border: 2px solid red;*/
@@ -263,15 +264,11 @@ aside {
 
     fill: var(--terracotta);
 }
-/*.left-tick {*/
-/*    fill: var(--terracotta);*/
-/*}*/
 
 /* ------ prevent quill editor from scrolling ------ */
 .ql-editor {
     overflow: visible;
 }
-
 
 /* ------ entry preview ------ */
 .middle {
