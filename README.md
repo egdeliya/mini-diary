@@ -35,6 +35,11 @@ Start the application in development mode:
 npm start
 ```
 
+## Testing
+```bash
+npm test
+```
+
 ##  📂 Project Structure
 ```
 mini-diary/
@@ -58,8 +63,10 @@ mini-diary/
 
 ## 🙌 TODO
 
-- Add Github actions to build Electron app for different OS
-- Use SQLite
+- [x] Add basic tests
+- [ ] Add ability to remove diary entries
+- [ ] Add Github actions to build Electron app for different OS
+- [ ] Use SQLite
 
 ## 📝 License
 

@@ -15,7 +15,9 @@ const indexOptions = {
 }
 const index = new Document(indexOptions);
 
-const diaryFilePath = path.join(__dirname, './data/diary.json');
+const diaryFilePath = process.env.NODE_ENV === 'test'
+    ? path.join(__dirname, './test_data/diary.json')
+    : path.join(__dirname, './data/diary.json');
 
 function loadEntries() {
     if (!fs.existsSync(diaryFilePath)) {
@@ -33,6 +35,13 @@ function saveEntry(uid, entry) {
     } else {
         index.add(uid, entry);
     }
+    fs.writeFileSync(diaryFilePath, JSON.stringify(entries, null, 2));
+}
+
+function deleteEntry(uid) {
+    const entries = loadEntries();
+    delete entries[uid];
+    index.remove(uid);
     fs.writeFileSync(diaryFilePath, JSON.stringify(entries, null, 2));
 }
 
@@ -64,4 +73,9 @@ contextBridge.exposeInMainWorld('diaryAPI', {
     buildIndex: (entries) => buildIndex(entries),
     search: (pattern) => search(pattern),
     uuid: () => crypto.randomUUID(),
+    deleteEntry: (uid) => deleteEntry(uid),
 });
+
+if (process.env.NODE_ENV === 'test' && typeof module !== 'undefined') {
+    module.exports = {loadEntries, saveEntry, buildIndex, search, deleteEntry};
+}
