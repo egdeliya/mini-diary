@@ -41,13 +41,61 @@ html {
 
     font-family: var(--nunito), sans-serif;
 }
+
+/* ----- navigation ----- */
+nav ul {
+    list-style-type: none;
+
+    /* hide menu by default*/
+    visibility: hidden;
+
+    position: absolute;
+}
+#menu-checkbox {
+    display: none;
+}
+.menu-btn {
+    font-size: var(--font-size);
+    cursor: pointer;
+}
 .icon-menu {
     width: 2rem;
     height: 2rem;
 
     fill: var(--black);
 }
+nav a {
+    text-decoration: none;
 
+    color: var(--black);
+    font-family: var(--nunito), sans-serif;
+    font-size: var(--font-size);
+
+    display: flex;
+    gap: 1rem;
+
+    padding: 1rem 1.5rem;
+}
+nav img {
+    height: 1.5rem;
+    width: 1.5rem;
+
+    align-self: center;
+}
+nav li {
+    font-size: var(--font-size);
+}
+
+.hidden {
+    display: none;
+}
+.active {
+    display: block;
+}
+
+
+
+/* ----- entry page ----- */
 .page {
     /*border: 1px solid green;*/
     max-width: 900px;
