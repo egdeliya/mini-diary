@@ -15,47 +15,59 @@
 </head>
 <body>
 <div class="wrapper">
-    <nav>
-        <!--  TODO make a better (more intuitive) implementation of a burger menu
-            TODO or just give better names to input and label -->
-        <input type="checkbox" id="menu-checkbox">
-        <label for="menu-checkbox" class="menu-btn">
-            <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <aside>
+        <a href="#main-menu"
+           id="main-menu-toggle"
+           class="menu-toggle"
+           aria-label="Open main menu">
+            <span class="sr-only">Open main menu</span>
+            <svg aria-hidden="true" class="icon-menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
             </svg>
-        </label>
+        </a>
 
-        <ul class="nav-items">
-            <li>
-                <a class="back" href="#">
-                    <img src="./img/icon-back.svg" alt="left arrow">
-                    Back
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="./img/icon-search.svg" alt="search icon">
-                    Search
-                </a>
-            </li>
-            <li>
-                <a href="./create_entry.html">
-                    <img src="./img/icon-new-entry.svg" alt="pen icon">
-                    New entry
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="./img/icon-settings.svg" alt="gear icon">
-                    Settings
-                </a>
-            </li>
-            <li>
-                Log out
-            </li>
-        </ul>
-    </nav>
+        <nav id="main-menu" class="main-menu" aria-label="Main menu">
+            <a href="#main-menu-toggle"
+               id="main-menu-close"
+               class="menu-close"
+               aria-label="Close main menu">
+                <img src="./img/icon-back.svg" alt="left arrow" aria-hidden="true">
+                <span>Back</span>
+            </a>
+
+            <ul class="nav-items">
+                <li>
+                    <a href="#">
+                        <img src="./img/icon-search.svg" alt="search icon" aria-hidden="true">
+                        <span>Search</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./create_entry.html">
+                        <img src="./img/icon-new-entry.svg" alt="pen icon" aria-hidden="true">
+                        <span>New entry</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="./img/icon-settings.svg" alt="gear icon" aria-hidden="true">
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span>Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Closes main menu, if other place on the screen is clicked -->
+        <a href="#main-menu-toggle" class="backdrop"
+           tabindex="-1"
+           aria-hidden="true" hidden></a>
+    </aside>
 
     <article class="page">
         <header>
