@@ -220,6 +220,7 @@ aside {
 
     fill: var(--gray);
 }
+/* first page (with heading and date) */
 .entry-body {
     font-family: var(--nunito), sans-serif;
     /*font-size: var(--font-size);*/
@@ -250,10 +251,16 @@ aside {
 }
 
 /* ------ new page ------ */
+.overflow-stopper {
+    border: 2px solid red;
+    height: 2rem;
+}
 .new-page {
+    padding: 2rem !important;
+
     border: 1px solid green;
 
-    background-color: var(--terracotta);
+    background-color: var(--white);
     z-index: 1;
 
     position: absolute;
@@ -263,4 +270,9 @@ aside {
 
     height: 100%;
     width: 100%;
+
+    font-family: var(--nunito), sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.5rem;
 }

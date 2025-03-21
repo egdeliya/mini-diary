@@ -20,6 +20,7 @@ entryBodyEditor.on('text-change', (delta, oldDelta, source) => {
     }
     console.log("old change ---> ", oldDelta);
 
+    // TODO maybe detect overflow with y-coordinates
     if (entryBody.offsetHeight <= prevHeight) {
         return;
     }
@@ -27,13 +28,36 @@ entryBodyEditor.on('text-change', (delta, oldDelta, source) => {
     console.log("-------------> here we have an overflow!")
     console.log("current change ---> ", delta);
 
-    newPage = createNewPage()
+    entryBodyEditor.disable();
+
+    newPage = createNewPage();
     pageContainer.appendChild(newPage);
+
+    let newPageId = `#new-page-${currentPageId}`
+    // TODO create an array of page editors
+    const newPageEditor = new Quill(newPageId, {
+        theme: 'bubble'
+    });
+
+    let overflowStopper = document.createElement('div');
+    overflowStopper.classList.add('overflow-stopper');
+    overflowStopper.tabIndex = -1;
+    // overflowStopper.hidden = true;
+
+    newPage.appendChild(overflowStopper);
 });
+
+let currentPageId = 0;
 
 function createNewPage() {
     let newPage = document.createElement('div');
     newPage.classList.add('new-page');
+
+    currentPageId++;
+    newPage.id = `new-page-${currentPageId}`;
+
+    // TODO move overflowing text to the next page
     // newPage.textContent = text;
+
     return newPage;
 }
