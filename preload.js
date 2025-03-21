@@ -14,7 +14,7 @@ const indexOptions = {
 }
 const index = new Document(indexOptions);
 
-const diaryFilePath = path.join(__dirname, 'diary.json');
+const diaryFilePath = path.join(__dirname, './data/diary.json');
 
 function loadEntries() {
     if (!fs.existsSync(diaryFilePath)) {
