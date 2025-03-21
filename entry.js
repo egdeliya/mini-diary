@@ -7,6 +7,8 @@ let currentEntry = entries[uid];
 let dateElement = document.getElementsByClassName('date')[0];
 dateElement.innerText = currentEntry.date;
 
+let leftTickOfSaveIcon = document.getElementsByClassName("left-tick")[0];
+
 const entryTitleEditor = new Quill('#entry-title', {
     theme: 'bubble',
     placeholder: 'Entry title'
@@ -19,7 +21,7 @@ function updateTitle(delta, oldDelta, source) {
         return;
     }
 
-    localStorage.setItem(`current-entry-title`, entryTitleEditor.getText());
+    leftTickOfSaveIcon.style.fill = "#D3CFCF"; // gray
 }
 
 entryTitleEditor.on('text-change', updateTitle);
@@ -36,7 +38,7 @@ function updatePage(delta, oldDelta, source) {
         return;
     }
 
-    localStorage.setItem(`current-entry`, entryBodyEditor.getText());
+    leftTickOfSaveIcon.style.fill = "#D3CFCF"; // gray
 }
 
 entryBodyEditor.on('text-change', updatePage);
@@ -46,6 +48,9 @@ let newEntryLink = document.getElementById("new-entry");
 
 searchEntriesLink.addEventListener("click", updateEntry);
 newEntryLink.addEventListener("click", updateEntry);
+
+let saveEntryButton = document.getElementsByClassName("save-button")[0];
+saveEntryButton.addEventListener("click", updateEntry);
 
 function updateEntry(event) {
     // save current entry to file / sqlite
@@ -60,4 +65,6 @@ function updateEntry(event) {
         };
 
     window.diaryAPI.saveEntry(currentEntry.uid, entry);
+
+    leftTickOfSaveIcon.style.fill = "#E07A5F"; // terracotta
 }

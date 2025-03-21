@@ -228,8 +228,13 @@ aside {
     padding: 0;
 }
 .icon-summary {
-    width: 2.5rem;
-    height: 2.5rem;
+    /*border: 2px solid red;*/
+
+    padding: 0;
+    margin: 0;
+
+    width: 2.3rem;
+    height: 2.3rem;
 
     fill: var(--gray);
 
@@ -248,16 +253,32 @@ aside {
     flex-basis: 97%;
 }
 
+.save-button {
+    border: none;
+    /*border: 2px solid green;*/
+
+    margin-right: auto;
+
+    padding: 0;
+
+    height: 3rem;
+    width: 3rem;
+
+    cursor: pointer;
+    background-color: transparent;
+
+    align-self: flex-end;
+}
 .icon-save {
     /*border: 2px solid blue;*/
     width: 3rem;
     height: 3rem;
 
     fill: var(--terracotta);
-
-    align-self: flex-end;
-    margin-right: auto;
 }
+/*.left-tick {*/
+/*    fill: var(--terracotta);*/
+/*}*/
 
 /* ------ prevent quill editor from scrolling ------ */
 .ql-editor {
