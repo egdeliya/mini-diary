@@ -28,26 +28,19 @@ let charsPerLine = Math.ceil(lineWidth / fontSize);
 // из предположений, что font=Nunito, font-size=1.5rem, lineWidth=736px
 const averageCharsPerLine = 73;
 const averageCharWidth = Math.ceil(lineWidth / averageCharsPerLine);
-const lineBreakWidth = 0.6;
-const lineBreakChars = Math.ceil(lineBreakWidth * averageCharsPerLine);
 
 console.log("--------> fontSize ", fontSize)
 console.log("--------> lineHeight ", lineHeight)
 console.log("--------> lineWidth ", lineWidth)
 console.log("--------> charsPerLine ", charsPerLine)
 console.log("--------> averageCharWidth ", averageCharWidth)
-console.log("--------> lineBreakChars ", lineBreakChars)
-
-let lineBreak = 0;
-let lineBreaksPerPage = 0;
 
 // Quill event handler on 'text-change'
 function addNewPage(delta, oldDelta, source) {
-    console.log("current change ---> ", delta);
+    console.log("---------------------------------------")
+    console.log("current delta ---> ", delta);
     console.log("old delta ---> ", oldDelta);
-    console.log("old delta ops ---> ", oldDelta.ops);
-    console.log("retain ------> ", delta.ops[0].retain)
-    console.log("averageCharsPerLine ------> ", averageCharsPerLine)
+    console.log("delta retain ------> ", delta.ops[0].retain)
 
     if (delta.ops.length < 2 || !delta.ops[1].hasOwnProperty("insert")) {
         console.log("there wasn't an insert (nothing to move to the next page)")
@@ -55,57 +48,42 @@ function addNewPage(delta, oldDelta, source) {
     }
 
     let retainChars = delta.ops[0].retain;
-    let oldContent = oldDelta.ops[0].insert;
-    if (oldContent[oldContent.length-1] === '\n') {
-        lineBreaksPerPage++;
-        lineBreak = 1;
-        console.log("---------> line break")
-    }
-
-    // let textWidth = (retainChars + lineBreaksPerPage * lineBreakChars) * averageCharWidth;
-
-    // console.log("textWidth ------> ", textWidth)
-    // let curLinesNum = Math.round(textWidth / lineWidth);
-    // console.log("curLinesNum ------> ", curLinesNum)
-    // console.log("curLinesNum float ------> ", textWidth / lineWidth)
-
-    // let curHeight = curLinesNum * lineHeight;
-    // console.log("curHeight ------> ", curHeight)
 
     // В общем можно вычислять размер методом getBounds, в поле bottom будет высота контента
     console.log("quil.getBounds ------> ", pageEditors[currentPageId].getBounds(retainChars));
+    console.log("-------------> initialHeight ", initialHeight)
 
     if (!delta.ops[1].hasOwnProperty("insert")) {
         console.log("there wasn't an insert (nothing to move to the next page)")
         return;
-    }
 
+    }
     let height = pageEditors[currentPageId].getBounds(retainChars).height;
     let bottom = pageEditors[currentPageId].getBounds(retainChars).bottom;
-    if (bottom + height * lineBreak <= initialHeight) {
-        return;
-    }
-
-    console.log("-------------> here we have an overflow! so there is a need to create a new page")
-    console.log("-------------> bottom + height * lineBreak ", bottom + height * lineBreak);
-    console.log("-------------> initialHeight ", initialHeight)
-
-    // wait until the end of the line
     let deltaHeight = 0;
     if (delta.ops[1].insert === '\n') {
         deltaHeight = height;
+
     }
 
+    // check if this is the end of the page
+    // - если перенести курсор на строку ниже \n, то  getBounds.bottom вернет значение с опозданием, не прибавится
+    // высота строки. deltaHeight это фиксит
+    // - даже если удалить последний символ из quill, dev page все равно вставит его, подумает, что произошла прокрутка и
+    // добавит scroll. поэтому оставляем еще одну высоту строки height для предотвращения появления скроллера
+    if (bottom + deltaHeight <= initialHeight - height) {
+        return;
+
+    }
+    console.log("-------------> here we have an overflow! so there is a need to create a new page")
     console.log("-------------> deltaHeight ", deltaHeight)
 
-    if (bottom + deltaHeight <= initialHeight) {
-        return;
-    }
 
     let lastInsert = delta.ops[1].insert;
+    console.log("----------> delta.ops[1].insert ", delta.ops[1].insert)
 
     pageEditors[currentPageId].disable();
-    // нужно сделать так, чтобы при переносе строки не было прокрутки, удалить дельту из эдитора
+    // нужно сделать так, чтобы при добавлении символа не появилась прокрутка из-за overflow, удалить дельту из эдитора
     pageEditors[currentPageId].deleteText(retainChars, 1);
 
     currentPageId++;
@@ -115,9 +93,11 @@ function addNewPage(delta, oldDelta, source) {
 
     let text = "";
     if (!isWhitespace(lastInsert)) {
+        let oldContent = oldDelta.ops[0].insert;
         // перенести последнее слово на новую страницу
-        text = oldDelta.ops[0].insert.slice(
-            oldDelta.ops[0].insert.lastIndexOf(' ') + 1
+        text = oldContent.slice(
+            // quill всегда добавляет \n в конце строки, поэтому нужно взять slice до oldContent.length - 1
+            oldContent.lastIndexOf(' ') + 1, oldContent.length - 1
         );
         text += lastInsert;
     }
@@ -135,7 +115,6 @@ function addNewPage(delta, oldDelta, source) {
     initialHeight = currentPage.offsetHeight;
 
     currentPageEditor = pageEditors[currentPageId];
-    lineBreaksPerPage = 0;
     currentPageEditor.on('text-change', addNewPage)
 }
 
@@ -144,9 +123,6 @@ function createBlankPage(pageId) {
     newPage.classList.add('blank-page');
 
     newPage.id = `page-${pageId}`;
-
-    // TODO move overflowing text to the next page
-    // newPage.textContent = text;
 
     return newPage;
 }
