@@ -180,6 +180,7 @@ aside {
 .page-container {
     /*border: 1px solid green;*/
     max-width: 800px;
+    min-width: 44%;
 
     margin-left: auto;
 
@@ -324,4 +325,8 @@ aside {
     fill: var(--terracotta);
 
     align-self: flex-end;
+}
+
+.entries-list {
+    list-style-type: none;
 }
