@@ -1,7 +1,7 @@
 :root {
     /* primary text */
     --black: #2E2E2E;
-    /* secondary text or not primary icons */
+    /* secondary text, borders or not primary icons */
     --gray: #D3CFCF;
     /* background */
     --terracotta-white: #FAF9F6;
@@ -26,24 +26,20 @@ html {
     margin: 0;
     padding: 0;
 }
-body {
-    margin: 0;
-    padding: 0;
-}
 .wrapper {
+    /*border: 2px solid yellowgreen;*/
+
     height: 100vh;
 
-    margin: 0;
     padding: 1.5rem 0 1rem 5rem;
 
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
 
     background-color: var(--terracotta-white);
     color: var(--black);
 
-    /*font-size: var(--font-size);*/
-    font-family: var(--nunito);
+    font-family: var(--nunito), sans-serif;
 }
 .icon-menu {
     width: 2rem;
@@ -53,19 +49,24 @@ body {
 }
 
 .page {
-    /*border: 1px solid gray;*/
-    margin: 0 auto;
+    /*border: 1px solid green;*/
     max-width: 900px;
+
+    margin-left: auto;
 
     padding: 2rem;
 
     display: flex;
     flex-direction: column;
-    /*justify-content: ;*/
 
     background-color: var(--white);
 
     font-family: var(--nunito), sans-serif;
+}
+.page p,
+.page div {
+    margin: 0;
+    padding: 0;
 }
 .page header {
     display: flex;
@@ -75,9 +76,10 @@ body {
 }
 .title-container {
     /*border: 1px solid green;*/
-    /*flex-basis: 90%;*/
 }
 .page header .entry-title {
+    /*border: 2px solid red;*/
+
     width: 100%;
 
     font-family: var(--nunito), sans-serif;
@@ -86,9 +88,6 @@ body {
 
     margin: 0;
     padding: 0;
-}
-.page header p {
-    margin: 0;
 }
 .icon-summary {
     /*width="800px" height="800px"*/
@@ -115,8 +114,12 @@ body {
 }
 
 .icon-save {
+    /*border: 2px solid blue;*/
     width: 3rem;
     height: 3rem;
 
     fill: var(--terracotta);
+
+    align-self: flex-end;
+    margin-right: auto;
 }
