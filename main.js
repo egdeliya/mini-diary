@@ -10,8 +10,9 @@ const createWindow = () => {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
         },
+        fullscreen: true,
     });
-    mainWindow.loadFile('entry.html');
+    mainWindow.loadFile('new_entry.html');
 }
 
 app.whenReady().then(() => {

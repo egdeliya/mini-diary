@@ -1,15 +1,18 @@
-dateElement = document.getElementsByClassName('date')[0];
-let today = new Date();
-let opts = {day: "numeric", month: "long", year: "numeric"};
-const date = today.toLocaleString("ru-RU", opts);
-dateElement.innerText = date;
+const search =  window.location.search;
+const uid = search.split('=')[1];
 
-let localStorage = window.localStorage;
+let entries = window.diaryAPI.loadEntries();
+let currentEntry = entries[uid];
+
+let dateElement = document.getElementsByClassName('date')[0];
+dateElement.innerText = currentEntry.date;
 
 const entryTitleEditor = new Quill('#entry-title', {
     theme: 'bubble',
     placeholder: 'Entry title'
 });
+
+entryTitleEditor.setText(currentEntry.title);
 
 function updateTitle(delta, oldDelta, source) {
     if (source === 'api') {
@@ -26,6 +29,8 @@ let entryBodyEditor = new Quill('#page-0', {
     placeholder: 'Entry body'
 });
 
+entryBodyEditor.setText(currentEntry.content);
+
 function updatePage(delta, oldDelta, source) {
     if (source === 'api') {
         return;
@@ -36,30 +41,23 @@ function updatePage(delta, oldDelta, source) {
 
 entryBodyEditor.on('text-change', updatePage);
 
-function uuidv4() {
-    return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
-        (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
-    );
-}
-
 let searchEntriesLink = document.getElementById("search-entries");
-searchEntriesLink.addEventListener("click", (e) => {
+let newEntryLink = document.getElementById("new-entry");
+
+searchEntriesLink.addEventListener("click", updateEntry);
+newEntryLink.addEventListener("click", updateEntry);
+
+function updateEntry(event) {
     // save current entry to file / sqlite
     let title = entryTitleEditor.getText(0);
     let content = entryBodyEditor.getText(0);
-    if (title.trim() === "" && content.trim() === "") {
-        return;
-    }
-
-    let uid = uuidv4();
 
     const entry = {
-        uid: uid,
-        title: title,
-        date: date,
-        content: content
-    };
+            uid: currentEntry.uid,
+            title: title,
+            date: currentEntry.date,
+            content: content
+        };
 
-
-    window.diaryAPI.saveEntry(uid, entry);
-});
+    window.diaryAPI.saveEntry(currentEntry.uid, entry);
+}
