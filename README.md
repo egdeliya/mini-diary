@@ -1,5 +1,7 @@
 # Mini-diary
 
+[![codecov](https://codecov.io/github/egdeliya/mini-diary/graph/badge.svg?token=UFGRS2JBF6)](https://codecov.io/github/egdeliya/mini-diary)
+
 A journal app focused on simplicity. Users can create and edit using the [Quill](https://quilljs.com/) text editor,
 read, and search diary entries. All data is stored locally on the user’s device. 
 The minimalistic design helps users focus on writing without distractions.
@@ -35,6 +37,11 @@ Start the application in development mode:
 npm start
 ```
 
+## Testing
+```bash
+npm test
+```
+
 ##  📂 Project Structure
 ```
 mini-diary/
@@ -58,8 +65,10 @@ mini-diary/
 
 ## 🙌 TODO
 
-- Add Github actions to build Electron app for different OS
-- Use SQLite
+- [x] Add basic tests
+- [ ] Add ability to remove diary entries
+- [ ] Add Github actions to build Electron app for different OS
+- [ ] Use SQLite
 
 ## 📝 License
 
