@@ -294,6 +294,7 @@ aside {
 
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-between;
 }
 
 .search {
@@ -328,8 +329,6 @@ aside {
     height: 2rem;
 
     fill: var(--terracotta);
-
-    align-self: flex-end;
 }
 
 .entries-list {

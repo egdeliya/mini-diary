@@ -41,22 +41,23 @@ mini-diary/
 ├── css
    └── styles.css        # Application styles
 ├── img/                 # Application images
+├── js/                  # Application images
+    ├── editor.js            # Common functions to work with editor
+    ├── new_entry.js         # Create new entry logic
+    ├── search_entries.js    # Search entries logic
+    └── entry.js             # View and edit entry logic
 ├── main.js              # Main Electron process
 ├── preload.js           # Preload script (bridge between frontend and backend)
 ├── new_entry.html       # New entry interface
-├── new_entry.js         # New entry logic
 ├── search_entries.html  # Search entries interface
-├── search_entries.js    # Search entries logic
 ├── entry.html           # View and edit entry interface
-├── entry.js             # View and edit entry logic
 ├── package.json         # Dependencies and scripts
 ├── data/diary.json      # File for storing entries
 └── node_modules/        # Installed packages
 ```
 
-## TODO
+## 🙌 TODO
 
-- Convert to npm project
 - Add Github actions to build Electron app for different OS
 - Use SQLite
 

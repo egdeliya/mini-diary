@@ -1,6 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto')
 
 const { Document } = require('flexsearch');
 
@@ -62,4 +63,5 @@ contextBridge.exposeInMainWorld('diaryAPI', {
     saveEntry: (uid, entry) => saveEntry(uid, entry),
     buildIndex: (entries) => buildIndex(entries),
     search: (pattern) => search(pattern),
+    uuid: () => crypto.randomUUID(),
 });
