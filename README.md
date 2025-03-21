@@ -14,5 +14,11 @@ Tested on MacOS.
 npm install electron --save-dev
 ```
 
+## Run
+
+```bash
+npm run start
+```
+
 ## Copyright
 Copyright © 2024 Egdeliia Samirova. See [license](LICENSE) for details.
